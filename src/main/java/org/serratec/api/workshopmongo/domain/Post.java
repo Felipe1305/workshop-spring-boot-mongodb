@@ -1,9 +1,12 @@
 package org.serratec.api.workshopmongo.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.serratec.api.workshopmongo.dto.AuthorDTO;
+import org.serratec.api.workshopmongo.dto.ComentDTO;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -17,6 +20,9 @@ public class Post implements Serializable {
 	private String title;
 	private String body;
 	private AuthorDTO author;
+	
+	
+	private List<ComentDTO> coments = new ArrayList<>();
 	
 	public Post() {}
 
@@ -91,6 +97,14 @@ public class Post implements Serializable {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
+	}
+
+	public List<ComentDTO> getComents() {
+		return coments;
+	}
+
+	public void setComents(List<ComentDTO> coments) {
+		this.coments = coments;
 	}
 	
 
