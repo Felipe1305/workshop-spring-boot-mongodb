@@ -3,6 +3,7 @@ package org.serratec.api.workshopmongo.services;
 import java.util.List;
 
 import org.serratec.api.workshopmongo.domain.User;
+import org.serratec.api.workshopmongo.exception.ObjectNotFoundException;
 import org.serratec.api.workshopmongo.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,5 +17,10 @@ public class UserService {
 	public List<User> findAll() {
 		List<User> list = repo.findAll();
 		return list;
+	}
+
+	public User findById(String id) {
+		User user = repo.findById(id).orElseThrow( ()-> new ObjectNotFoundException("Objeto não encontrado"));
+		return user;
 	}
 }
