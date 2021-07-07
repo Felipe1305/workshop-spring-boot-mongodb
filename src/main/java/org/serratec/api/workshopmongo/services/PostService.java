@@ -1,5 +1,6 @@
 package org.serratec.api.workshopmongo.services;
 
+import java.util.Date;
 import java.util.List;
 
 import org.serratec.api.workshopmongo.domain.Post;
@@ -23,6 +24,12 @@ public class PostService {
 	
 	public List<Post> findByTitle(String text) {
 		return repo.findByTitle(text);
+	}
+	
+
+	public List<Post> fullSearch(String text, Date minDate, Date maxDate) {
+		maxDate = new Date(maxDate.getTime()+(24*60*60*100));
+		return repo.fullSearch(text, minDate, maxDate);
 	}
 	
 
